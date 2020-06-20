@@ -1,4 +1,4 @@
-set nocompatible              " be iMproved, required
+set nocompatible              ""be iMproved, required
 filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 
@@ -10,6 +10,7 @@ Plugin 'VundleVim/Vundle.vim'  " required
 " ===================
 
 " Plugin 'dracula/vim'
+" Plugin 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'morhetz/gruvbox'
 Plugin 'mbbill/undotree'
@@ -22,7 +23,7 @@ Plugin 'ryanoasis/vim-devicons'
 Plugin 'mhinz/vim-startify'
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 " Plugin 'python-mode/python-mode'
-Plugin 'itchyny/lightline.vim'
+" Plugin 'itchyny/lightline.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'deoplete-plugins/deoplete-jedi'
@@ -30,11 +31,11 @@ Plugin 'majutsushi/tagbar'
 Plugin 'preservim/nerdcommenter'
 
 if has('nvim')
-  Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
-  Plugin 'Shougo/deoplete.nvim'
-  Plugin 'roxma/nvim-yarp'
-  Plugin 'roxma/vim-hug-neovim-rpc'
+Plugin 'Shougo/deoplete.nvim'
+Plugin 'roxma/nvim-yarp'
+Plugin 'roxma/vim-hug-neovim-rpc'
 endif
 " ===================
 " end of plugins
@@ -44,7 +45,6 @@ filetype plugin indent on       " required
 
 colorscheme gruvbox
 
-let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:python3_host_prog='/home/pi/miniconda3/envs/pynvim/bin/python3'
 
 let $VIRTUAL_ENV = $CONDA_PREFIX
@@ -52,11 +52,13 @@ let g:deoplete#enable_at_startup = 1
 let g:jedi#completions_enabled = 0
 let mapleader = " "
 let g:airline#extensions#tabline#enabled = 1
+
+let g:airline#extensions#tabline#buffer_nr_show = 1
+
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 let g:airline_theme='fruit_punch'
 
-let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:jedi#goto_command = "<leader>d"
 let g:jedi#goto_assignments_command = "<leader>g"
 let g:jedi#goto_definitions_command = "<leader>k" 
@@ -80,15 +82,15 @@ set pastetoggle=<F2>
 " make backspaces more powerful
 set backspace=indent,eol,start
 set ruler                           " show line and column number
-set showtabline=2
 set mouse=a
+set showtabline=2
 
 syntax on               " syntax highlighting
 
 syntax enable
 " Auto close bracket
-nnoremap <C-e> 5<C-e>
-nnoremap <C-y> 5<C-y>
+nnoremap <C-e> 4<C-e>
+nnoremap <C-y> 4<C-y>
 inoremap " ""<left>
 inoremap < <><left>
 inoremap ' ''<left>
@@ -107,7 +109,7 @@ noremap <leader>u :UndotreeShow<CR>
 nnoremap <leader>- :wincmd s<CR>
 nnoremap <leader>\ :wincmd v<CR>
 map <F6> :NERDTreeToggle<CR>
-nmap <F8> :TagbarToggle<CR>
+" nmap <F8> :TagbarToggle<CR>
 
 let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
@@ -120,4 +122,6 @@ autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%,
 autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 
 
+" :command! -complete=file -nargs=1 Rpdf :r !pdftotext -nopgbrk <q-args> -
+" :command! -complete=file -nargs=1 Rpdf :r !pdftotext -nopgbrk <q-args> - |fmt -csw78
 
